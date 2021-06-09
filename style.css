@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #ffffff;
+  background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+  font-family: "Noto Sans JP", sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container.hide {
+  display: none;
+}
+
+.title,
+.add-container h1 {
+  font-weight: 600;
+  font-size: 3rem;
+  font-style: oblique;
+  margin-bottom: 2rem;
+}
+
+.add-card,
+.clear-cards,
+.clear-current-card {
+  background-color: #4d4d4d;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.add-card {
+  margin-bottom: 1rem;
+}
+
+.clear-cards {
+  position: absolute;
+  left: 1rem;
+  bottom:1rem;
+}
+
+.clear-current-card {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+
+.btn:hover {
+  color: #fff;
+}
+
+.btn:active,
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation span {
+  font-size: 2rem;
+}
+
+.left-arrow,
+.right-arrow {
+  font-size: 3rem;
+  margin: 0 2rem;
+}
+
+.left-arrow:hover,
+.right-arrow:hover {
+  color: #4d4d4d;
+}
+
+.card-container {
+  perspective: 100rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50rem;
+  max-width: 100%;
+  height: 30rem;
+}
+
+.card {
+  background-color: transparent;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  border: none;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(50%) rotateY(-10deg);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.card.active {
+  cursor: pointer;
+  opacity: 1;
+  z-index: 10;
+  transform: translateX(0) rotateY(0deg);
+}
+
+.card.left {
+  transform: translateX(-50%) rotateY(10deg);
+}
+
+.inner-card {
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.4);
+  border-radius: .4rem;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+
+.card.show-answer .inner-card {
+  transform: rotateX(180deg);
+}
+
+.inner-card-front, .inner-card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: #fff
+}
+
+.inner-card-front::after, .inner-card-back::after {
+  content: 'Flip Card';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #ddd;
+}
+
+.inner-card-front:hover .inner-card-front::after {
+  color: blue;
+}
+
+.inner-card-front {
+  transform: rotateX(0deg);
+  z-index: 2;
+}
+
+.inner-card-back {
+  transform: rotateX(180deg);
+}
+
+.flip-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.add-container {
+  position: absolute;
+  background-color: #ffffff;
+  background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.add-container.show {
+  opacity:1;
+  z-index: 100;
+}
+
+.add-container .btn-small {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 4rem;
+}
+
+.form-group {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1rem;
+}
+
+.form-group label {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-group textarea {
+  width: 60rem;
+  height: 10rem;
+  font-size: 1.5rem
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 90%;
+  }
+
+  .form-group textarea {
+    width: 40rem;
+  }
+}
